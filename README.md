@@ -93,6 +93,8 @@ Les quatre fichiers contiennent 65 565 lignes. Un comptage indépendant des mess
 - 1 tentative réussie ;
 - top des utilisateurs invalides : admin 354, support 300, esisa 203, ubuntu 135, user 121, test 82, dev 70, solana 67, orangepi 60, ubnt 40.
 
+Le test réseau réel a enrichi 997 IP, réparties dans 76 pays, avant une réponse HTTP 429 (quota ipinfo). Le pipeline a terminé normalement ; 5 528 tentatives échouées restent classées `Inconnu`. Les IP déjà enrichies restent en cache. Une reprise après rétablissement du quota peut compléter les pays manquants.
+
 Ces chiffres ont été comparés aux agrégations SQLite. Les tests couvrent les rotations gzip, répétitions, noms vides, IP invalides, encodages invalides, cache persistant, timeout et absence de doublons après relancement. Le mode sans réseau classe les IP publiques non présentes en cache comme `Inconnu` ; il ne permet pas de valider leur pays réel.
 
 ## Workflow Git
