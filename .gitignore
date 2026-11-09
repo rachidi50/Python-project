@@ -1,0 +1,21 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Local analytics artifacts and server logs
+output/
+*.log
+*.log.*
+countries.csv
+
+# Journaux et stockage du pipeline
+logs/
+*.sqlite3
+*.sqlite3-journal
