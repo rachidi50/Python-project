@@ -27,10 +27,12 @@ Depuis le dossier du projet, avec Python 3.13 ou plus récent :
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install requests matplotlib psycopg2-binary
-python main.py --year 2025
+python main.py
 ```
 
-L'année 2025 est un exemple : il faut fournir l'année réelle des logs. Les dates syslog ne la contiennent pas. Le pipeline accepte également les dates ISO avec année et fuseau horaire.
+Le bouton ▶ de l'IDE sur `main.py` lance également l'analyse et ouvre les trois graphiques. Sélectionner l'interpréteur `.venv/bin/python` et le dossier du projet comme répertoire de travail.
+
+L'année par défaut est 2025 : adapter `LOG_YEAR` dans `main.py` à l'année réelle des logs, ou passer `--year 2026` au lancement. Les dates syslog ne la contiennent pas. Le pipeline accepte également les dates ISO avec année et fuseau horaire.
 
 Sans réseau ni fenêtres graphiques :
 
