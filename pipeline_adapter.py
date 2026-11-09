@@ -17,7 +17,7 @@ ingestion_logger = logging.getLogger('adapter.ingestion')
 processing_logger = logging.getLogger('adapter.processing')
 geo_logger = logging.getLogger('adapter.geolocation')
 HEADER = re.compile(r'^(?P<date>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}|\d{4}-\d\d-\d\dT\S+)\s+\S+\s+sshd(?:-session)?\[\d+\]:\s*(?P<message>.*)$')
-AUTH = re.compile(r'(?P<result>Failed|Accepted) (?:password|publickey|keyboard-interactive(?:/pam)?|none) for (?P<invalid>invalid user )?(?P<user>\S+) from (?P<ip>\S+) port \d+(?:\s|$)')
+AUTH = re.compile(r'(?P<result>Failed|Accepted) (?:password|publickey|keyboard-interactive(?:/pam)?|none) for (?P<invalid>invalid user )?(?P<user>\S*) from (?P<ip>\S+) port \d+(?:\s|$)')
 REPEATED = re.compile(r'message repeated (?P<count>\d+) times:\s*\[\s*(?P<message>.*?)\s*\]\s*$')
 
 
@@ -65,7 +65,7 @@ def parse_event(line: str, year: int) -> dict | None:
         processing_logger.exception('Date, IP ou répétition invalide : %s', line.rstrip())
         return None
     status = 'Success' if auth['result'] == 'Accepted' else ('Invalid' if auth['invalid'] else 'Failed')
-    return dict(timestamp=date.isoformat(), ip=address, user=auth['user'], status=status, weight=weight)
+    return dict(timestamp=date.isoformat(), ip=address, user=auth['user'] or '(vide)', status=status, weight=weight)
 
 
 class GeoLocator:
