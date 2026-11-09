@@ -32,6 +32,8 @@ python main.py
 
 Le bouton ▶ de l'IDE sur `main.py` lance également l'analyse et ouvre les trois graphiques. Sélectionner l'interpréteur `.venv/bin/python` et le dossier du projet comme répertoire de travail.
 
+L'affichage attend la fermeture des fenêtres des graphiques. Ctrl+C interrompt proprement le programme (code de sortie 130), sans traceback. Les PNG déjà exportés restent disponibles dans `output/`. Sur macOS, utiliser `.venv/bin/python` ; le chemin `.venv/Scripts/python.exe` correspond à Windows.
+
 L'année par défaut est 2025 : adapter `LOG_YEAR` dans `main.py` à l'année réelle des logs, ou passer `--year 2026` au lancement. Les dates syslog ne la contiennent pas. Le pipeline accepte également les dates ISO avec année et fuseau horaire.
 
 Sans réseau ni fenêtres graphiques :

@@ -8,6 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+.venv-windows-backup/
 
 # Local analytics artifacts and server logs
 output/

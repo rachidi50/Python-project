@@ -8,12 +8,13 @@ from serving.dashboard import build_dashboard
 from storage.events import EventStore
 
 logger = logging.getLogger(__name__)
+LOG_YEAR = 2025
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description='Analyser les logs SSH et générer trois graphiques.')
     parser.add_argument('--input', default='data')
-    parser.add_argument('--year', type=int, required=True, help='Année des logs syslog, absente des lignes')
+    parser.add_argument('--year', type=int, default=LOG_YEAR, help='Année des logs syslog, absente des lignes (défaut : %(default)s)')
     parser.add_argument('--output', default='output')
     parser.add_argument('--database', default='output/events.sqlite3')
     parser.add_argument('--log-dir', default='logs')
@@ -36,6 +37,9 @@ def main() -> int:
         assert sum(n for _, n in charts['success_by_user']) == counts['Success']
         logger.info('Analyse terminée : %s ; graphiques : %s', counts, Path(args.output).resolve())
         return 0
+    except KeyboardInterrupt:
+        logger.info('Analyse interrompue par l’utilisateur')
+        return 130
     except Exception:
         logger.exception('Échec du pipeline')
         return 1
